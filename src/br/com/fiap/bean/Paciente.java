@@ -79,10 +79,10 @@ public class Paciente {
     }
     public String definirPrioridade (){
         int idadePaciente = calcularIdade();
-        if (idadePaciente >=60 || nivelDor ==7){
-            return ("prioridade alta");
-        } else if     (nivelDor >= 8) {
+        if (nivelDor >= 8) {
             return ("prioridade urgente");
+        } else if (idadePaciente >=60 || nivelDor ==7){
+            return ("prioridade alta");
         }
     else{
         return ("Espere até ser chamado");
