@@ -73,11 +73,21 @@ public class Paciente {
         }
     }
 // metodos classe
-    public int calcularIdade (int anoAtual){
-        return  anoAtual - anoNascimento;
+    public int calcularIdade (){
+        int anoAtualCalculo = LocalDate.now().getYear();
+        return  anoAtualCalculo - anoNascimento;
     }
-    public String definirPrioridade (int anoAtual){
-        return "";
+    public String definirPrioridade (){
+        int idadePaciente = calcularIdade();
+        if (idadePaciente >=60 || nivelDor ==7){
+            return ("prioridade alta");
+        } else if     (nivelDor >= 8) {
+            return ("prioridade urgente");
+        }
+    else{
+        return ("Espere até ser chamado");
+
+        }
     }
 
 }
