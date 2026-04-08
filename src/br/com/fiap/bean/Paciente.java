@@ -1,5 +1,7 @@
 package br.com.fiap.bean;
 
+import java.time.LocalDate;
+
 public class Paciente {
     //atributos
     private String nome;
@@ -14,8 +16,8 @@ public class Paciente {
     public Paciente(String nome, String sintomas, int nivelDor, int anoNascimento) {
         this.nome = nome;
         this.sintomas = sintomas;
-        this.nivelDor = nivelDor;
-        this.anoNascimento = anoNascimento;
+        setNivelDor(nivelDor);
+        setAnoNascimento(anoNascimento);
     }
     //metodos getters e setters
 
@@ -40,7 +42,16 @@ public class Paciente {
     }
 
     public void setNivelDor(int nivelDor) {
-        this.nivelDor = nivelDor;
+        try {
+
+            if (nivelDor >= 0 && nivelDor <= 10) {
+                this.nivelDor = nivelDor;
+            } else {
+                throw new Exception("Número inválido, o nível de dor deve ser um número de 0 a 10");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public int getAnoNascimento() {
@@ -48,7 +59,18 @@ public class Paciente {
     }
 
     public void setAnoNascimento(int anoNascimento) {
-        this.anoNascimento = anoNascimento;
+        try {
+            LocalDate dataAtual = LocalDate.now();
+            if (anoNascimento >=1900 && anoNascimento <= dataAtual.getYear()){
+                this.anoNascimento = anoNascimento;
+            }
+            else {
+                throw new Exception("ano inválido, tente um número entre 1900 e o ano atual");
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 // metodos classe
     public int calcularIdade (int anoAtual){
