@@ -16,7 +16,7 @@ public class MainVersao2 {
             scan = new Scanner(System.in);
             System.out.println("Preciso que você digite seu nome:");
             nome = scan.nextLine();
-            System.out.printf("Olá %s,seja bem vindo!, digite seu ano de nascimento ",nome);
+            System.out.printf("Olá %s,seja bem vindo!, digite seu ano de nascimento: ",nome);
             anoNascimento = scan.nextInt();
             scan.nextLine();
             System.out.println("Certo, e qual o motivo da sua vinda? Qual sintoma está sentindo?");
