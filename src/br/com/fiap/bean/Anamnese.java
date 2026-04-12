@@ -96,4 +96,16 @@ public class Anamnese {
         }else return ("Risco Cirúrgico Padrão");
     }
 
+    @Override
+    public String toString() {
+        return "Anamnese{" +
+                "queixaPrincipal='" + queixaPrincipal + '\'' +
+                ", historicoDoencas='" + historicoDoencas + '\'' +
+                ", usaMedicacaoControlada=" + usaMedicacaoControlada +
+                ", quaisMedicamentos='" + quaisMedicamentos + '\'' +
+                ", temAlergia=" + temAlergia +
+                ", qualAlergia='" + qualAlergia + '\'' +
+                ", habitoDeVida='" + habitoDeVida + '\'' +
+                '}';
+    }
 }

@@ -90,4 +90,13 @@ public class Paciente {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "nome='" + nome + '\'' +
+                ", sintomas='" + sintomas + '\'' +
+                ", nivelDor=" + nivelDor +
+                ", anoNascimento=" + anoNascimento +
+                '}';
+    }
 }
