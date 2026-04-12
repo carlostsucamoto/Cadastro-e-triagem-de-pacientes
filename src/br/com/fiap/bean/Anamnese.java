@@ -48,8 +48,12 @@ public class Anamnese {
 
     public void setUsaMedicacaoControlada(boolean usaMedicacaoControlada) {
         this.usaMedicacaoControlada = usaMedicacaoControlada;
-    }
 
+
+        if (!this.usaMedicacaoControlada) {
+            this.quaisMedicamentos = "Nenhuma";
+        }
+    }
     public String getQuaisMedicamentos() {
         return quaisMedicamentos;
     }
@@ -64,6 +68,10 @@ public class Anamnese {
 
     public void setTemAlergia(boolean temAlergia) {
         this.temAlergia = temAlergia;
+
+        if (!this.temAlergia) {
+            this.qualAlergia = "Nenhuma";
+        }
     }
 
     public String getQualAlergia() {
