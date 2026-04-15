@@ -8,6 +8,7 @@ public class Paciente {
     private String sintomas;
     private int nivelDor;
     private int anoNascimento;
+    private Anamnese fichaClinica;
 //construtores
 
     public Paciente() {
@@ -18,8 +19,9 @@ public class Paciente {
         this.sintomas = sintomas;
         setNivelDor(nivelDor);
         setAnoNascimento(anoNascimento);
+
     }
-    //metodos getters e setters
+//metodos getters e setters
 
     public String getNome() {
         return nome;
@@ -58,6 +60,14 @@ public class Paciente {
         return anoNascimento;
     }
 
+    public Anamnese getFichaClinica() {
+        return fichaClinica;
+    }
+
+    public void setFichaClinica(Anamnese fichaClinica) {
+        this.fichaClinica = fichaClinica;
+    }
+
     public void setAnoNascimento(int anoNascimento) {
         try {
             LocalDate dataAtual = LocalDate.now();
@@ -71,6 +81,7 @@ public class Paciente {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
     }
 // metodos classe
     public int calcularIdade (){
