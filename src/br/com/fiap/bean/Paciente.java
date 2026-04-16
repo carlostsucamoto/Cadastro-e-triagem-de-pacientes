@@ -1,28 +1,29 @@
 package br.com.fiap.bean;
 
+import javax.swing.JOptionPane;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Paciente {
     //atributos
     private String nome;
     private String sintomas;
     private int nivelDor;
-    private int anoNascimento;
+    private LocalDate dataNascimento;
     private Anamnese fichaClinica;
-//construtores
 
+    //construtores
     public Paciente() {
     }
 
-    public Paciente(String nome, String sintomas, int nivelDor, int anoNascimento) {
+    public Paciente(String nome, String sintomas, int nivelDor, LocalDate dataNascimento) {
         this.nome = nome;
         this.sintomas = sintomas;
         setNivelDor(nivelDor);
-        setAnoNascimento(anoNascimento);
-
+        setDataNascimento(dataNascimento);
     }
-//metodos getters e setters
 
+    //metodos getters e setters
     public String getNome() {
         return nome;
     }
@@ -45,19 +46,35 @@ public class Paciente {
 
     public void setNivelDor(int nivelDor) {
         try {
-
             if (nivelDor >= 0 && nivelDor <= 10) {
                 this.nivelDor = nivelDor;
             } else {
                 throw new Exception("Número inválido, o nível de dor deve ser um número de 0 a 10");
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // Agora sim ele mostra a janela na cara do usuário e encerra o sistema!
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            System.exit(0);
         }
     }
 
-    public int getAnoNascimento() {
-        return anoNascimento;
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        try {
+            LocalDate inicio = LocalDate.parse("1900-01-01").minusDays(1);
+            LocalDate fim = LocalDate.now().plusDays(1);
+            if (dataNascimento.isAfter(inicio) && dataNascimento.isBefore(fim)) {
+                this.dataNascimento = dataNascimento;
+            } else {
+                throw new Exception("Data fora da faixa permitida");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            System.exit(0);
+        }
     }
 
     public Anamnese getFichaClinica() {
@@ -68,36 +85,21 @@ public class Paciente {
         this.fichaClinica = fichaClinica;
     }
 
-    public void setAnoNascimento(int anoNascimento) {
-        try {
-            LocalDate dataAtual = LocalDate.now();
-            if (anoNascimento >=1900 && anoNascimento <= dataAtual.getYear()){
-                this.anoNascimento = anoNascimento;
-            }
-            else {
-                throw new Exception("ano inválido, tente um número entre 1900 e o ano atual");
-
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
+    //metodos da classe
+    public int calcularIdade() {
+        LocalDate dataAtual = LocalDate.now();
+        Period idade = Period.between(dataNascimento, dataAtual);
+        return idade.getYears();
     }
-// metodos classe
-    public int calcularIdade (){
-        int anoAtualCalculo = LocalDate.now().getYear();
-        return  anoAtualCalculo - anoNascimento;
-    }
-    public String definirPrioridade (){
+
+    public String definirPrioridade() {
         int idadePaciente = calcularIdade();
         if (nivelDor >= 8) {
             return ("prioridade urgente");
-        } else if (idadePaciente >=60 || nivelDor ==7){
+        } else if (idadePaciente >= 60 || nivelDor == 7) {
             return ("prioridade alta");
-        }
-    else{
-        return ("Espere até ser chamado");
-
+        } else {
+            return ("Espere até ser chamado");
         }
     }
 
@@ -107,7 +109,7 @@ public class Paciente {
                 "nome='" + nome + '\'' +
                 ", sintomas='" + sintomas + '\'' +
                 ", nivelDor=" + nivelDor +
-                ", anoNascimento=" + anoNascimento +
+                ", dataNascimento=" + dataNascimento +
                 '}';
     }
 }
