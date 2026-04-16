@@ -4,6 +4,7 @@ import br.com.fiap.bean.Anamnese;
 import br.com.fiap.bean.Paciente;
 
 import javax.swing.*;
+import java.lang.invoke.StringConcatFactory;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -49,8 +50,21 @@ public class MainAnamnese {
             } else {
                 ficha1.setTemAlergia(false);
             }
+            paciente1.setFichaClinica(ficha1);
 
-
+            String relatorio = String.format(
+                    "Olá, %s!\n" +
+                            "Vi que você tem %d anos e está sentindo uma dor de intensidade %d.\n" + "Logo, sua prioridade é: %s\n\n"+ "--- DADOS DA TRIAGEM ---\n" + "Queixa principal: %s\n" + "Histórico: %s\n" + "Hábitos: %s\n\n" + "ALERTA DO SISTEMA - RISCO CIRÚRGICO: %s\n\n" + "Vou passar essas informações ao médico.",
+                    paciente1.getNome(),
+                    paciente1.calcularIdade(),
+                    paciente1.getNivelDor(),
+                    paciente1.definirPrioridade(),
+                    paciente1.getFichaClinica().getQueixaPrincipal(),
+                    paciente1.getFichaClinica().getHistoricoDoencas(),
+                    paciente1.getFichaClinica().getHabitoDeVida(),
+                    paciente1.getFichaClinica().verificarRiscoCirurgico()
+            );
+            JOptionPane.showMessageDialog(null, relatorio, "Prontuário Final", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
