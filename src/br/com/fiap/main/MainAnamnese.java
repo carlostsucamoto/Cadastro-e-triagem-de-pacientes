@@ -24,7 +24,7 @@ public class MainAnamnese {
             paciente1 = new Paciente(nome, sintomas, nivelDor, ano);
 
             Anamnese ficha1;
-            String queixa, historico, habito;
+            String queixa, historico, habito, qualRemedio, qualAlergia;
             queixa = JOptionPane.showInputDialog("Digite a sua queixa principal: ").toUpperCase();
             historico = JOptionPane.showInputDialog("Essa sua queixa principal, vem acontecenda há algum tempo?, se sim descreva como começou").toUpperCase();
             habito = JOptionPane.showInputDialog("Agora preciso saber um pouco mais sobre você e seuas habitos, você bebe?, fuma alguma coisa? está indo ao banheiro normalmente? digite algo que o médico possa considerar útil para a resolução do tratamento: ");
@@ -32,7 +32,23 @@ public class MainAnamnese {
             ficha1.setQueixaPrincipal(queixa);
             ficha1.setHistoricoDoencas(historico);
             ficha1.setHabitoDeVida(habito);
+            int remedio = JOptionPane.showConfirmDialog(null, "Você toma algum remédio controlado?", "Triagem", JOptionPane.YES_NO_OPTION);
+            if (remedio == JOptionPane.YES_OPTION) {
+                qualRemedio = JOptionPane.showInputDialog("Digite os remédios utilizados: ");
+                ficha1.setUsaMedicacaoControlada(true);
+                ficha1.setQuaisMedicamentos(qualRemedio);
 
+            } else {
+                ficha1.setUsaMedicacaoControlada(false);
+            }
+            int alergia = JOptionPane.showConfirmDialog(null, "Você tem alguma alergia?", "Triagem", JOptionPane.YES_NO_OPTION);
+            if (alergia == JOptionPane.YES_OPTION) {
+                qualAlergia = JOptionPane.showInputDialog("Digite as suas alergias: ");
+                ficha1.setTemAlergia(true);
+                ficha1.setQualAlergia(qualAlergia);
+            } else {
+                ficha1.setTemAlergia(false);
+            }
 
 
         } catch (Exception e) {
