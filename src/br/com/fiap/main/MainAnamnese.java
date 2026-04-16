@@ -62,16 +62,19 @@ public class MainAnamnese {
 
             paciente1.setFichaClinica(ficha1);
 
-            String relatorio = String.format(
-                    "Olá, %s!\n" +
-                            "Vi que você tem %d anos e está sentindo uma dor de intensidade %d.\n" +
-                            "Logo, sua prioridade é: %s\n\n" +
-                            "--- DADOS DA TRIAGEM ---\n" +
-                            "Queixa principal: %s\n" +
-                            "Histórico: %s\n" +
-                            "Hábitos: %s\n\n" +
-                            "ALERTA DO SISTEMA: %s\n\n" +
-                            "Vou passar essas informações ao médico.",
+            String relatorio = String.format("""
+                    Olá, %s!
+                    Vi que você tem %d anos e está sentindo uma dor de intensidade %d.
+                    Logo, sua prioridade é: %s
+                    
+                    --- DADOS DA TRIAGEM ---
+                    Queixa principal: %s
+                    Histórico: %s
+                    Hábitos: %s
+                    
+                    ALERTA DO SISTEMA: %s
+                    
+                    Vou passar essas informações ao médico.""",
                     paciente1.getNome(),
                     paciente1.calcularIdade(),
                     paciente1.getNivelDor(),
